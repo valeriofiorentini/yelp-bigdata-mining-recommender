@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*:Zone.Identifier
+backup/
+old_progetto/
+nuovo progetto/
+scratch/
+homework6-main/
+.env
