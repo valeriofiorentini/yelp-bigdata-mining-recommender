@@ -50,7 +50,8 @@ The analysis is structured into 5 sequential, reproducible Jupyter Notebooks:
 ## 🛠️ Tech Stack & Libraries
 
 - **Language:** Python 3.10+
-- **Data Engineering:** Pandas, NumPy
+- **Data Engineering:** Pandas, NumPy, PyArrow
+- **Web Dashboard:** Streamlit
 - **Machine Learning & NLP:** Scikit-Learn, NLTK, SciPy
 - **Geospatial & Visualization:** Folium, Matplotlib, Seaborn
 - **Network Analysis:** NetworkX
@@ -77,6 +78,14 @@ Download the official Yelp dataset from [Yelp Open Dataset](https://www.yelp.com
 
 ### 4. Run Notebooks
 Execute notebooks sequentially from `01` to `05` using Jupyter Lab or VS Code.
+
+### 5. Launch the Interactive Dashboard (Streamlit)
+A fully interactive web dashboard is included to demonstrate the NLP sentiment analysis, geospatial maps, and recommendation engine in real-time.
+
+```bash
+uv run streamlit run app.py
+```
+*(We highly recommend using `uv` to instantly launch the dashboard in an isolated environment without dependency conflicts).* 
 
 ---
 

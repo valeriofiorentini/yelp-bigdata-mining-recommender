@@ -8,3 +8,12 @@ nuovo progetto/
 scratch/
 homework6-main/
 .env
+
+# Ignored artifacts from Jupyter and Streamlit
+*.parquet
+*.joblib
+*metrics.json
+topics_summary.csv
+yelp_logo.png
+.venv/
+uv.lock

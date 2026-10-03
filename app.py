@@ -156,8 +156,7 @@ df_businesses, sentiment_clf, tfidf, knn_recommender, saved_metrics, source_stat
 # SIDEBAR
 # -----------------------------------------------------------------------------
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1024px-Yelp_Logo.svg.png", width=160)
-    st.title("Piattaforma Yelp AI")
+    st.markdown("<h1 style='text-align: center; color: #f43f5e;'>🍔 Yelp AI Suite</h1>", unsafe_allow_html=True)
     st.markdown("Pipeline Analitica & Predittiva End-to-End su larga scala (~5 GB Yelp Academic Dataset).")
     
     st.markdown("---")
@@ -242,7 +241,7 @@ with tab1:
     col_map, col_list = st.columns([2.5, 1.5])
     with col_map:
         if len(city_df) > 0 and 'latitude' in city_df.columns and 'longitude' in city_df.columns:
-            map_df = city_df[['latitude', 'longitude']].dropna()
+            map_df = city_df[['latitude', 'longitude']].dropna().astype(float)
             st.map(map_df, zoom=11)
         else:
             st.info("Nessuna coordinata disponibile per i filtri selezionati.")
@@ -252,7 +251,7 @@ with tab1:
         top_loc = city_df.sort_values(by=['stars', 'review_count'], ascending=False).head(8)
         for _, row in top_loc.iterrows():
             st.markdown(f"""
-            <div style="background: white; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #0284c7; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+            <div style="background: white; color: #0f172a; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #0284c7; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
                 <strong>{row['name']}</strong> - <span style="color:#eab308;">★ {row['stars']}</span> <span style="color:#64748b; font-size: 0.85rem;">({row.get('review_count', 0)} rec.)</span><br>
                 <span style="font-size: 0.8rem; color:#475569;">{str(row.get('categories', ''))[:50]}...</span>
             </div>
@@ -357,7 +356,7 @@ with tab3:
             for idx, r in sim_candidates.iterrows():
                 score = np.random.uniform(0.84, 0.98)
                 st.markdown(f"""
-                <div style="background: white; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #10b981; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div style="background: white; color: #0f172a; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #10b981; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <strong>{r['name']}</strong>
                         <span style="background:#ecfdf5; color:#059669; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.85rem;">Similarità: {score:.2%}</span>
@@ -374,7 +373,7 @@ with tab3:
             for idx, r in svd_matches.iterrows():
                 corr = np.random.uniform(0.68, 0.95)
                 st.markdown(f"""
-                <div style="background: white; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #6366f1; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div style="background: white; color: #0f172a; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #6366f1; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <strong>{r['name']}</strong>
                         <span style="background:#eef2ff; color:#4f46e5; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.85rem;">Correlazione: {corr:.2f}</span>
@@ -391,7 +390,7 @@ with tab3:
             for idx, r in dl_matches.iterrows():
                 pred_star = min(5.0, round(float(r['stars']) + np.random.uniform(-0.2, 0.4), 1))
                 st.markdown(f"""
-                <div style="background: white; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #ec4899; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div style="background: white; color: #0f172a; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #ec4899; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <strong>{r['name']}</strong>
                         <span style="background:#fdf2f8; color:#db2777; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.85rem;">Rating Atteso: {pred_star} ⭐</span>
