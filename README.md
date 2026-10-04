@@ -49,7 +49,7 @@ Oltre all'analisi nei notebook, il progetto include un'applicazione **Streamlit*
 
 ### Avviare l'App
 ```bash
-streamlit run app.py
+uv run streamlit run app.py
 ```
 
 ### Anteprima della Dashboard
@@ -86,9 +86,9 @@ Il set di dati ufficiale non è incluso nella repository per via delle sue dimen
    git clone https://github.com/valeriofiorentini/yelp-bigdata-mining-recommender.git
    cd yelp-bigdata-mining-recommender
    ```
-2. Installa le dipendenze (raccomandiamo l'uso di un ambiente virtuale):
+2. Installa le dipendenze in modo ultra-rapido utilizzando il package manager `uv`:
    ```bash
-   pip install -r requirements.txt
+   uv pip install -r requirements.txt
    ```
    *(Le dipendenze principali includono: `polars`, `pandas`, `scikit-learn`, `tensorflow`, `networkx`, `folium`, `loguru`)*.
 3. Esegui i notebook nell'ordine numerato da `01` a `05`.
