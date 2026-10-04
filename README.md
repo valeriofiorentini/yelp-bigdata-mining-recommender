@@ -88,7 +88,7 @@ Il set di dati ufficiale non è incluso nella repository per via delle sue dimen
    ```
 2. Installa le dipendenze in modo ultra-rapido utilizzando il package manager `uv`:
    ```bash
-   uv pip install -r requirements.txt
+   uv sync
    ```
    *(Le dipendenze principali includono: `polars`, `pandas`, `scikit-learn`, `tensorflow`, `networkx`, `folium`, `loguru`)*.
 3. Esegui i notebook nell'ordine numerato da `01` a `05`.
