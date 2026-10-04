@@ -2,94 +2,106 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![Polars](https://img.shields.io/badge/Polars-Blazing%20Fast-FFD43B?style=for-the-badge&logo=polars&logoColor=black)](https://pola.rs/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-Deep%20Learning-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 
-An end-to-end data science and machine learning research pipeline applied to the **Yelp Academic Dataset** (150,000+ businesses, millions of customer reviews). This project explores multi-stage data ingestion, geospatial GIS density mapping, NLP sentiment analysis, topic modeling, and hybrid collaborative filtering recommendation algorithms.
+Un'architettura completa di Data Science e Machine Learning applicata all'enorme **Yelp Academic Dataset** (oltre 150.000 attività commerciali e 4 milioni di recensioni). 
+Il progetto dimostra come gestire file di svariati GigaByte senza problemi di memoria (OOM) sfruttando **Polars** per l'ingestion e l'aggregazione, e librerie classiche (Scikit-Learn, TensorFlow, NetworkX) per algoritmi complessi di NLP, Network Analysis e Sistemi di Raccomandazione.
 
 ---
 
-## 🌟 Architecture & Pipeline Workflow
+## 🌟 Architettura e Moduli della Pipeline
 
-The analysis is structured into 5 sequential, reproducible Jupyter Notebooks:
+L'analisi è suddivisa in 5 Jupyter Notebooks riproducibili e sequenziali:
 
 ```text
-├── Yelp_01_Ingestion_Preprocessing.ipynb       # Big data schema filtering & cleaning
-├── Yelp_02_EDA_Geospatial_Networks.ipynb       # GIS spatial heatmaps & interaction graphs
-├── Yelp_03_NLP_Sentiment_TopicModeling.ipynb   # VADER/Transformers sentiment & LDA topic clustering
-├── Yelp_04_Recommender_Systems.ipynb           # Collaborative filtering & Matrix Factorization
-└── Yelp_05_Pipeline_Integration_Benchmark.ipynb # End-to-end integration & evaluation metrics
+├── Yelp_01_Ingestion_Preprocessing.ipynb       # Filtraggio, pulizia e conversione in Parquet con Polars
+├── Yelp_02_EDA_Geospatial_Networks.ipynb       # Analisi spaziali GIS (Folium) e grafi di interazione (NetworkX)
+├── Yelp_03_NLP_Sentiment_TopicModeling.ipynb   # Sentiment Analysis e Topic Modeling (LDA) sulle recensioni
+├── Yelp_04_Recommender_Systems.ipynb           # Collaborative Filtering (SVD) e Deep Learning
+└── Yelp_05_Pipeline_Integration_Benchmark.ipynb # Benchmark delle metriche e Report di Business Intelligence
 ```
 
----
-
-### 1. Ingestion & Preprocessing (`Yelp_01_Ingestion_Preprocessing.ipynb`)
-- Streaming ingestion and schema standardization for high-volume JSON business and review records.
-- Handling missing data, type casting, text normalization, and deduplication.
-
-### 2. Exploratory Data Analysis & Geospatial GIS (`Yelp_02_EDA_Geospatial_Networks.ipynb`)
-- **Spatial Analytics:** Geospatial density clustering using **Folium** interactive maps and coordinates.
-- **Network Graphs:** Analyzing bipartite graphs of customer interactions, check-ins, and business categories with **NetworkX**.
-
-### 3. NLP, Sentiment Analysis & Topic Modeling (`Yelp_03_NLP_Sentiment_TopicModeling.ipynb`)
-- Text tokenization, stopword removal, and lemmatization across user reviews.
-- Polarity and subjectivity scoring with sentiment analysis.
-- Unsupervised **LDA (Latent Dirichlet Allocation)** and **TF-IDF** to uncover latent business themes and dining attributes.
-
-### 4. Hybrid Recommender Systems (`Yelp_04_Recommender_Systems.ipynb`)
-- **Collaborative Filtering:** User-Item rating matrix decomposition (SVD / Matrix Factorization).
-- **Content-Based Filtering:** Feature similarity using business metadata and extracted review topics.
-- Hybrid recommendation scoring predicting personalized ratings with low RMSE.
-
-### 5. Pipeline Integration & Benchmarking (`Yelp_05_Pipeline_Integration_Benchmark.ipynb`)
-- Unified evaluation suite comparing baseline recommenders against matrix factorization models.
-- Validation metrics: **RMSE**, **MAE**, **Precision@K**, and **Recall@K**.
+### ✨ Novità: Motore Polars Integrato
+L'intera pipeline è stata recentemente convertita da Pandas a **Polars**, permettendo:
+- Caricamenti quasi istantanei da file Parquet.
+- Utilizzo ottimizzato della RAM per le operazioni di `group_by` e `filter` su milioni di righe.
+- Zero crash della memoria (Out-Of-Memory) durante la manipolazione del massiccio database delle recensioni (5GB+).
 
 ---
 
-## 🛠️ Tech Stack & Libraries
+## 📊 Analisi ed Esplorazione nei Notebook
 
-- **Language:** Python 3.10+
-- **Data Engineering:** Pandas, NumPy, PyArrow
-- **Web Dashboard:** Streamlit
-- **Machine Learning & NLP:** Scikit-Learn, NLTK, SciPy
-- **Geospatial & Visualization:** Folium, Matplotlib, Seaborn
-- **Network Analysis:** NetworkX
+Nel corso dei notebook vengono prodotte diverse visualizzazioni avanzate. Ecco alcuni esempi chiave (salva i tuoi grafici in `docs/assets/` con questi nomi per visualizzarli qui):
+
+> 🕸️ **Grafo di Rete Bipartita (NetworkX - Louvain Modularity)**
+> ![Network Graph](docs/assets/network_graph.png)
+
+> ☁️ **WordCloud dei Topic e Sentiment Analysis**
+> ![WordCloud](docs/assets/wordcloud.png)
 
 ---
 
-## 🚀 Getting Started
+## 💻 Streamlit Web Dashboard
 
-### 1. Clone the repository
+Oltre all'analisi nei notebook, il progetto include un'applicazione **Streamlit** interattiva (Yelp AI Suite) per esplorare visualmente i risultati: mappe GIS dei ristoranti, report del Sentiment delle recensioni, grafi di rete e suggerimenti del Recommender System.
+
+### Avviare l'App
 ```bash
-git clone https://github.com/valeriofiorentini/yelp-bigdata-mining-recommender.git
-cd yelp-bigdata-mining-recommender
+streamlit run app.py
 ```
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-# or with uv / poetry:
-uv pip install -r requirements.txt
-```
+### Anteprima della Dashboard
+Ecco come si presenta la dashboard in azione (salva i 4 screenshot della UI in `docs/assets/`):
 
-### 3. Data Setup
-Download the official Yelp dataset from [Yelp Open Dataset](https://www.yelp.com/dataset) and place the JSON files in a `data/` directory.
+> 📍 **Analisi Geospaziale e Mappe Interattive**
+> ![Mappa GIS](docs/assets/gis_map.png)
 
-### 4. Run Notebooks
-Execute notebooks sequentially from `01` to `05` using Jupyter Lab or VS Code.
+> 💬 **Sentiment Analysis & Topic Modeling**
+> ![Sentiment](docs/assets/sentiment_analysis.png)
 
-### 5. Launch the Interactive Dashboard (Streamlit)
-A fully interactive web dashboard is included to demonstrate the NLP sentiment analysis, geospatial maps, and recommendation engine in real-time.
+> 🤖 **Motore di Raccomandazione Multi-Paradigma**
+> ![Recommender](docs/assets/recommender.png)
 
-```bash
-uv run streamlit run app.py
-```
-*(We highly recommend using `uv` to instantly launch the dashboard in an isolated environment without dependency conflicts).* 
+> 📈 **Benchmark Architettura e Performance**
+> ![Benchmark](docs/assets/benchmark.png)
 
 ---
 
-## 👤 Author
+## 📥 Come Ottenere i Dati (Dataset)
+
+Il set di dati ufficiale non è incluso nella repository per via delle sue dimensioni.
+1. Scarica il dataset gratuito dal sito ufficiale: **[Yelp Open Dataset](https://www.yelp.com/dataset)**.
+2. Estrai i file `.json` (in particolare `yelp_academic_dataset_business.json` e `yelp_academic_dataset_review.json`).
+3. Posizionali in una cartella accessibile dai notebook o su Google Drive (se usi Colab).
+
+---
+
+## 🚀 Setup e Installazione (Locale o Colab)
+
+### Opzione A: Esecuzione Locale (Consigliata per macchine performanti)
+1. Clona il repository:
+   ```bash
+   git clone https://github.com/valeriofiorentini/yelp-bigdata-mining-recommender.git
+   cd yelp-bigdata-mining-recommender
+   ```
+2. Installa le dipendenze (raccomandiamo l'uso di un ambiente virtuale):
+   ```bash
+   pip install -r requirements.txt
+   ```
+   *(Le dipendenze principali includono: `polars`, `pandas`, `scikit-learn`, `tensorflow`, `networkx`, `folium`, `loguru`)*.
+3. Esegui i notebook nell'ordine numerato da `01` a `05`.
+
+### Opzione B: Esecuzione su Google Colab (Google Drive)
+Se il tuo PC non ha abbastanza risorse, l'intero progetto è compatibile con **Google Colab**.
+1. Carica i file `.json` del dataset all'interno del tuo Google Drive in una cartella specifica (es. `Mio Drive/Yelp_Dataset/`).
+2. Apri i notebook con Google Colab.
+3. Esegui la cella di setup iniziale che installerà le librerie necessarie (tramite `%pip install`) e monterà automaticamente il tuo Google Drive per leggere i dati e salvare gli output intermedi in formato compresso `.parquet`.
+
+---
+
+## 👤 Autore
 
 **Valerio Fiorentini**
 - Portfolio: [cv-fiorentini-valerio.vercel.app](https://cv-fiorentini-valerio.vercel.app)

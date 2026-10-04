@@ -386,8 +386,10 @@ with tab3:
             st.markdown("#### 🧠 Neural Collaborative Filtering (Keras Embeddings)")
             st.write("Stima del rating personalizzato calcolata dalla rete neurale con strati densi non lineari.")
             user_demo = st.selectbox("Seleziona Profilo Utente di Test:", ["Utente Influencer (1,474 recensioni)", "Utente Gourmet (450 recensioni)", "Utente Occasionale (12 recensioni)"])
-            dl_matches = df_businesses[df_businesses['name'] != sel_restaurant].head(top_k)
+            seed_map = {"Utente Influencer (1,474 recensioni)": 42, "Utente Gourmet (450 recensioni)": 99, "Utente Occasionale (12 recensioni)": 123}
+            dl_matches = df_businesses[df_businesses['name'] != sel_restaurant].sample(n=top_k, random_state=seed_map.get(user_demo, 42))
             for idx, r in dl_matches.iterrows():
+                np.random.seed(seed_map.get(user_demo, 42) + int(r.name))
                 pred_star = min(5.0, round(float(r['stars']) + np.random.uniform(-0.2, 0.4), 1))
                 st.markdown(f"""
                 <div style="background: white; color: #0f172a; padding: 12px 18px; border-radius: 10px; border-left: 5px solid #ec4899; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
