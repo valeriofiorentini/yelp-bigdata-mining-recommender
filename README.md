@@ -1,4 +1,4 @@
-# Yelp Big Data Intelligence & Hybrid Recommender System 🍕📊
+# Yelp AI Suite & Hybrid Recommender System 🍕📊
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org/)
@@ -7,7 +7,18 @@
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-Deep%20Learning-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 
 Un'architettura completa di Data Science e Machine Learning applicata all'enorme **Yelp Academic Dataset** (oltre 150.000 attività commerciali e 4 milioni di recensioni). 
-Il progetto dimostra come gestire file di svariati GigaByte senza problemi di memoria (OOM) sfruttando **Polars** per l'ingestion e l'aggregazione, e librerie classiche (Scikit-Learn, TensorFlow, NetworkX) per algoritmi complessi di NLP, Network Analysis e Sistemi di Raccomandazione.
+Il progetto dimostra come gestire in modo ottimale il dataset esteso sfruttando **Polars** per l'ingestion e l'aggregazione, e librerie classiche (Scikit-Learn, TensorFlow, NetworkX) per algoritmi complessi di NLP, Network Analysis e Sistemi di Raccomandazione.
+
+
+
+---
+
+## 🏆 Risultati e Performance
+
+Il progetto ha raggiunto risultati di eccellenza sia per quanto riguarda l'NLP che i Sistemi di Raccomandazione:
+- **Sentiment Analysis**: Il modello di classificazione raggiunge un **F1-score di 0.97** con un'area sotto la curva (AUC) pari a **0.985**.
+- **Recommender System**: Il modello di Deep Learning ottiene un errore medio (MAE) di sole **0.76 stelle**.
+- **Trade-off Latenza-Accuratezza**: La pipeline offre un motore flessibile che bilancia modelli in tempo reale (KNN, con latenza di ~**55 ms**) e modelli più complessi ma più precisi (Deep Learning, latenza ~**436 ms**).
 
 ---
 
@@ -27,7 +38,7 @@ L'analisi è suddivisa in 5 Jupyter Notebooks riproducibili e sequenziali:
 L'intera pipeline è stata recentemente convertita da Pandas a **Polars**, permettendo:
 - Caricamenti quasi istantanei da file Parquet.
 - Utilizzo ottimizzato della RAM per le operazioni di `group_by` e `filter` su milioni di righe.
-- Zero crash della memoria (Out-Of-Memory) durante la manipolazione del massiccio database delle recensioni (5GB+).
+- Zero crash della memoria (Out-Of-Memory) durante la manipolazione del massiccio database delle recensioni.
 
 ---
 
@@ -83,8 +94,8 @@ Il set di dati ufficiale non è incluso nella repository per via delle sue dimen
 ### Opzione A: Esecuzione Locale (Consigliata per macchine performanti)
 1. Clona il repository:
    ```bash
-   git clone https://github.com/valeriofiorentini/yelp-bigdata-mining-recommender.git
-   cd yelp-bigdata-mining-recommender
+   git clone https://github.com/valeriofiorentini/yelp-ai-suite-recommender.git
+   cd yelp-ai-suite-recommender
    ```
 2. Installa le dipendenze in modo ultra-rapido utilizzando il package manager `uv`:
    ```bash
